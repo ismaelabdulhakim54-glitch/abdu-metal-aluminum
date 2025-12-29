@@ -2,203 +2,263 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ABDU Metal & Aluminum Work</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>ABDU Metal & Aluminum Work</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Animate.css for animation -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #0b1120;
-      color: #e5e7eb;
-    }
+    /* General Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background: #f5f5f5; color: #333; }
+    a { text-decoration: none; color: inherit; }
 
+    /* Header */
     header {
       position: sticky;
       top: 0;
-      background: rgba(2,6,23,0.95);
-      backdrop-filter: blur(10px);
-      padding: 18px 22px;
+      background-color: #1e90ff;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 2.5em;
+      font-weight: 700;
+      transition: all 0.3s ease;
       z-index: 1000;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-      color: #38bdf8;
-      font-weight: 800;
-      letter-spacing: 1px;
+    header.small {
+      padding: 10px 20px;
+      font-size: 1.5em;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 25px;
+    /* Menu (3 dots) */
+    .menu {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 2em;
+      cursor: pointer;
+      z-index: 1001;
     }
 
-    .about h2,
-    .contact h2 {
-      color: #38bdf8;
-      margin-bottom: 10px;
+    .menu ul {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      list-style: none;
+      padding: 10px 0;
+      width: 200px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    .about {
-      line-height: 1.8;
-      margin-bottom: 50px;
-    }
+    .menu:hover ul { display: block; }
+    .menu ul li { padding: 10px 20px; }
+    .menu ul li:hover { background: #f0f0f0; }
 
+    /* Gallery */
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
     }
 
-    .card {
-      background: #020617;
-      border-radius: 14px;
+    .gallery-item {
+      flex: 1 1 calc(50% - 40px);
+      max-width: 500px;
+      position: relative;
+      cursor: pointer;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      transition: transform 0.4s ease;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-    }
-
-    .card img {
+    .gallery-item img {
       width: 100%;
       display: block;
+      transition: transform 0.3s ease;
     }
 
-    .card .text {
-      padding: 18px;
-    }
+    .gallery-item:hover img { transform: scale(1.05); }
 
-    .card h3 {
-      margin: 0 0 10px;
-      color: #38bdf8;
-      font-size: 18px;
-    }
-
-    .card p {
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
-    .contact {
-      margin-top: 60px;
-      padding: 25px;
-      background: #020617;
-      border-radius: 14px;
+    .title {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 10px;
+      font-weight: 700;
+      font-size: 1em;
       text-align: center;
     }
 
-    .whatsapp {
+    /* About */
+    .about {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .about h2 { margin-bottom: 15px; color: #1e90ff; }
+    .about p { margin-bottom: 10px; line-height: 1.6; }
+
+    /* Modal for full image view */
+    .modal {
+      display: none;
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25d366;
+      z-index: 1002;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal-content {
+      margin: 5% auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .modal-caption {
+      text-align: center;
       color: #fff;
-      padding: 16px 22px;
-      border-radius: 50px;
-      text-decoration: none;
+      padding: 10px 0;
+      font-size: 1.2em;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
       font-weight: bold;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      cursor: pointer;
+    }
+
+    /* Video */
+    .video-section {
+      margin: 40px auto;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .video-section video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Phone */
+    .contact {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 1.3em;
+    }
+
+    @media screen and (max-width: 768px) {
+      .gallery-item { flex: 1 1 100%; }
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <h1>ABDU Metal & Aluminum Work</h1>
-</header>
+<header id="header">ABDU Metal & Aluminum Work</header>
 
-<div class="container">
-
-  <section class="about">
-    <h2>About Us</h2>
-    <p>
-      ABDU Metal & Aluminum Work delivers strong, precise, and modern metal solutions.
-      We specialize in aluminum doors, windows, gates, fences, railings, and custom
-      metal structures built to last.
-    </p>
-    <p>
-      Our work reflects experience, accuracy, and clean finishing. We focus on safety,
-      durability, and modern design to meet both residential and commercial needs.
-    </p>
-  </section>
-
-  <section class="gallery">
-
-    <div class="card">
-      <img src="images/Screenshot_20251205_192448_Google.jpg">
-      <div class="text">
-        <h3>Modern Aluminum Door Design</h3>
-        <p>Strong and clean aluminum door work with professional finishing.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/Screenshot_20251205_192622_Google.jpg">
-      <div class="text">
-        <h3>Precision Metal Structure</h3>
-        <p>Accurate metal construction built for strength and long-term use.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/Screenshot_20251205_192716_Google.jpg">
-      <div class="text">
-        <h3>Custom Gate Installation</h3>
-        <p>Secure and stylish metal gates designed to protect and impress.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/Screenshot_20251205_192745_Google.jpg">
-      <div class="text">
-        <h3>Professional Aluminum Window</h3>
-        <p>Modern aluminum windows with clean lines and strong frames.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/Screenshot_20251205_192819_Google.jpg">
-      <div class="text">
-        <h3>Heavy Duty Metal Work</h3>
-        <p>Reliable metal work designed for safety and durability.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/Screenshot_20251205_192839_Google.jpg">
-      <div class="text">
-        <h3>Clean Finish & Strong Build</h3>
-        <p>Attention to detail with solid construction and clean finishing.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="images/Screenshot_20251204_212255_Telegram.jpg">
-      <div class="text">
-        <h3>Trusted Aluminum Craftsmanship</h3>
-        <p>Professional aluminum work trusted by satisfied customers.</p>
-      </div>
-    </div>
-
-  </section>
-
-  <section class="contact">
-    <h2>Contact</h2>
-    <p>📞 Phone: <strong>0911464168</strong></p>
-  </section>
-
+<div class="menu">
+  &#x22EE;
+  <ul>
+    <li>About</li>
+    <li><a href="https://www.upwork.com/freelancers/~YOUR_UPWORK_PROFILE" target="_blank">Upwork</a></li>
+    <li><a href="https://www.fiverr.com/YOUR_FIVERR_PROFILE" target="_blank">Fiverr</a></li>
+    <li>Contact</li>
+  </ul>
 </div>
 
-<a class="whatsapp" href="https://wa.me/251911464168" target="_blank">
-  WhatsApp
-</a>
+<!-- Gallery -->
+<div class="gallery">
+  <div class="gallery-item"><img src="images/Screenshot_20251205_192448_Google.jpg" alt="Project 1"><div class="title">Aluminum Window Frames</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_192622_Google.jpg" alt="Project 2"><div class="title">Metal Doors</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_192716_Google.jpg" alt="Project 3"><div class="title">Custom Fabrication</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_192745_Google.jpg" alt="Project 4"><div class="title">Steel Staircase</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_192819_Google.jpg" alt="Project 5"><div class="title">Hand Rails</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_192839_Google.jpg" alt="Project 6"><div class="title">Roof Trusses</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_192900_Google.jpg" alt="Project 7"><div class="title">Aluminum Shopfronts</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_193105_Google.jpg" alt="Project 8"><div class="title">Balcony Railings</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_193134_Google.jpg" alt="Project 9"><div class="title">Metal Gates</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_193159_Google.jpg" alt="Project 10"><div class="title">Window Grills</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_195104_Google.jpg" alt="Project 11"><div class="title">Partition Panels</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251205_195215_Google.jpg" alt="Project 12"><div class="title">Custom Work Samples</div></div>
+  <div class="gallery-item"><img src="images/Screenshot_20251204_212255_Telegram.jpg" alt="Project 13"><div class="title">Telegram Design Sample</div></div>
+</div>
+
+<!-- About Section -->
+<div class="about">
+  <h2>About ABDU Metal & Aluminum Work</h2>
+  <p>We specialize in high-quality metal and aluminum fabrication. Our team delivers custom windows, doors, staircases, rails, gates, and more.</p>
+  <p>Experience: Over 5 years in the industry. Skilled in welding, CAD design, fabrication, and installation.</p>
+  <p>Languages & Tools: AutoCAD, SolidWorks, SketchUp, HTML5, CSS3, JavaScript, Three.js (3D), Blender, Photoshop.</p>
+  <p>Contact us via phone for inquiries and quotes: <strong>0911464168</strong></p>
+</div>
+
+<!-- Optional Video Section -->
+<div class="video-section">
+  <video controls>
+    <source src="images/video1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<!-- Modal for Full Image -->
+<div id="modal" class="modal">
+  <span class="modal-close">&times;</span>
+  <img class="modal-content" id="modal-img">
+  <div class="modal-caption" id="modal-caption"></div>
+</div>
+
+<script>
+  // Scroll header effect
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50) {
+      header.classList.add('small');
+    } else {
+      header.classList.remove('small');
+    }
+  });
+
+  // Modal image view
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalCaption = document.getElementById('modal-caption');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      modal.style.display = 'block';
+      modalImg.src = item.querySelector('img').src;
+      modalCaption.textContent = item.querySelector('.title').textContent;
+    });
+  });
+
+  const closeBtn = document.querySelector('.modal-close');
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+</script>
 
 </body>
 </html>
