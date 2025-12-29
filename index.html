@@ -1,201 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABDU Metal and Aluminum Work</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f5f5f5;
-        }
-        header {
-            position: sticky;
-            top: 0;
-            background: #007BFF; /* blue */
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-            font-size: 2em;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        header.shrink {
-            font-size: 1.2em;
-            padding: 10px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: scale(1.05);
-        }
-        .card img {
-            width: 100%;
-            display: block;
-        }
-        .card h3 {
-            margin: 10px;
-            font-size: 1.1em;
-        }
-        .about {
-            margin-top: 40px;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .phone {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #007BFF;
-        }
-        /* Modal for full image view */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10;
-            padding-top: 60px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.8);
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 80%;
-        }
-        .modal-caption {
-            text-align: center;
-            color: white;
-            margin-top: 10px;
-        }
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABDU Metal and Aluminum Work</title>
+<style>
+body { margin: 0; font-family: Arial, sans-serif; background: #f5f5f5; }
+header { position: sticky; top: 0; background: #0077cc; color: white; padding: 20px; text-align: center; font-size: 2.5rem; transition: all 0.3s ease; }
+header.small { font-size: 1.5rem; padding: 10px; }
+.grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px; }
+.card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.2); cursor: pointer; width: 300px; text-align: center; }
+.card img { width: 100%; height: auto; display: block; }
+.card h3 { margin: 10px 0; font-size: 1rem; }
+video { display: block; margin: 20px auto; max-width: 90%; border-radius: 8px; }
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; flex-direction: column; }
+.modal img { max-width:90%; max-height:70%; }
+.modal h3 { color:white; text-align:center; margin-top:10px; }
+.about { max-width: 800px; margin: 30px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+.about h2 { color: #0077cc; text-align:center; margin-bottom: 15px; }
+.about p { line-height: 1.6; text-align: justify; }
+.phone { text-align:center; margin-top: 15px; font-size: 1.2rem; font-weight:bold; color: #0077cc; }
+</style>
 </head>
 <body>
 
 <header id="header">ABDU Metal and Aluminum Work</header>
 
-<div class="container">
-
-    <div class="grid">
-        <div class="card" onclick="openModal('Screenshot_20251205_192448_Google.jpg','Metal Sheet Closeup')">
-            <img src="images/Screenshot_20251205_192448_Google.jpg" alt="Metal Sheet Closeup">
-            <h3>Metal Sheet Closeup</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_192622_Google.jpg','Aluminum Frame')">
-            <img src="images/Screenshot_20251205_192622_Google.jpg" alt="Aluminum Frame">
-            <h3>Aluminum Frame</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_192716_Google.jpg','Custom Metal Design')">
-            <img src="images/Screenshot_20251205_192716_Google.jpg" alt="Custom Metal Design">
-            <h3>Custom Metal Design</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_192745_Google.jpg','Workshop Tools')">
-            <img src="images/Screenshot_20251205_192745_Google.jpg" alt="Workshop Tools">
-            <h3>Workshop Tools</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_192819_Google.jpg','Aluminum Door')">
-            <img src="images/Screenshot_20251205_192819_Google.jpg" alt="Aluminum Door">
-            <h3>Aluminum Door</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_192839_Google.jpg','Metal Welding')">
-            <img src="images/Screenshot_20251205_192839_Google.jpg" alt="Metal Welding">
-            <h3>Metal Welding</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_192900_Google.jpg','Machine Work')">
-            <img src="images/Screenshot_20251205_192900_Google.jpg" alt="Machine Work">
-            <h3>Machine Work</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_193105_Google.jpg','Finished Product')">
-            <img src="images/Screenshot_20251205_193105_Google.jpg" alt="Finished Product">
-            <h3>Finished Product</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_193134_Google.jpg','Metal Frame Structure')">
-            <img src="images/Screenshot_20251205_193134_Google.jpg" alt="Metal Frame Structure">
-            <h3>Metal Frame Structure</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_193159_Google.jpg','Aluminum Railing')">
-            <img src="images/Screenshot_20251205_193159_Google.jpg" alt="Aluminum Railing">
-            <h3>Aluminum Railing</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_195104_Google.jpg','Custom Fabrication')">
-            <img src="images/Screenshot_20251205_195104_Google.jpg" alt="Custom Fabrication">
-            <h3>Custom Fabrication</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251205_195215_Google.jpg','Precision Metal Work')">
-            <img src="images/Screenshot_20251205_195215_Google.jpg" alt="Precision Metal Work">
-            <h3>Precision Metal Work</h3>
-        </div>
-        <div class="card" onclick="openModal('Screenshot_20251204_212255_Telegram.jpg','Telegram Contact')">
-            <img src="images/Screenshot_20251204_212255_Telegram.jpg" alt="Telegram Contact">
-            <h3>Telegram Contact</h3>
-        </div>
+<div class="grid">
+    <!-- First set of images -->
+    <div class="card" onclick="openModal('images/pexels-kevin-ku-92347-577585.jpg','Clear Vision Development')">
+        <img src="images/pexels-kevin-ku-92347-577585.jpg" alt="Clear Vision Development">
+        <h3>Clear Vision Development</h3>
+    </div>
+    <div class="card" onclick="openModal('images/website-9049204_1280-1.jpg','Increasing Income')">
+        <img src="images/website-9049204_1280-1.jpg" alt="Increasing Income">
+        <h3>Increasing Income</h3>
+    </div>
+    <div class="card" onclick="openModal('images/pexels-fotios-photos-2363482.jpg','Miniature World Code')">
+        <img src="images/pexels-fotios-photos-2363482.jpg" alt="Miniature World Code">
+        <h3>Miniature World Code</h3>
+    </div>
+    <div class="card" onclick="openModal('images/pexels-fotios-photos-16129705.jpg','Code Creation')">
+        <img src="images/pexels-fotios-photos-16129705.jpg" alt="Code Creation">
+        <h3>Code Creation</h3>
+    </div>
+    <div class="card" onclick="openModal('images/pexels-negativespace-160107.jpg','Code Only')">
+        <img src="images/pexels-negativespace-160107.jpg" alt="Code Only">
+        <h3>Code Only</h3>
+    </div>
+    <div class="card" onclick="openModal('images/pexels-thepaintedsquare-4200831.jpg','Open Laptop Google')">
+        <img src="images/pexels-thepaintedsquare-4200831.jpg" alt="Open Laptop Google">
+        <h3>Open Laptop Google</h3>
     </div>
 
-    <div class="about">
-        <h2>About Me</h2>
-        <p>I am ABDU, a professional metal and aluminum worker. I specialize in custom metal fabrication, welding, and aluminum works. I can create advanced designs, structures, and high-quality products. My expertise includes modern techniques for 2026 model fabrication and creative metal solutions.</p>
-        <p class="phone">Phone: 0911464168</p>
+    <!-- Telegram images -->
+    <div class="card" onclick="openModal('images/IMG_20251204_205205_486.jpg','Telegram Image 1')">
+        <img src="images/IMG_20251204_205205_486.jpg" alt="Telegram Image 1">
+        <h3>Telegram Image 1</h3>
     </div>
-
+    <div class="card" onclick="openModal('images/IMG_20251204_205220_786.jpg','Telegram Image 2')">
+        <img src="images/IMG_20251204_205220_786.jpg" alt="Telegram Image 2">
+        <h3>Telegram Image 2</h3>
+    </div>
+    <div class="card" onclick="openModal('images/IMG_20251204_205334_610.jpg','Telegram Image 3')">
+        <img src="images/IMG_20251204_205334_610.jpg" alt="Telegram Image 3">
+        <h3>Telegram Image 3</h3>
+    </div>
+    <div class="card" onclick="openModal('images/IMG_20251204_205347_799.jpg','Telegram Image 4')">
+        <img src="images/IMG_20251204_205347_799.jpg" alt="Telegram Image 4">
+        <h3>Telegram Image 4</h3>
+    </div>
+    <div class="card" onclick="openModal('images/IMG_20251204_210944_350.jpg','Telegram Image 5')">
+        <img src="images/IMG_20251204_210944_350.jpg" alt="Telegram Image 5">
+        <h3>Telegram Image 5</h3>
+    </div>
+    <div class="card" onclick="openModal('images/IMG_20251204_212206_139.jpg','Telegram Image 6')">
+        <img src="images/IMG_20251204_212206_139.jpg" alt="Telegram Image 6">
+        <h3>Telegram Image 6</h3>
+    </div>
+    <div class="card" onclick="openModal('images/IMG_20251204_212210_504.jpg','Telegram Image 7')">
+        <img src="images/IMG_20251204_212210_504.jpg" alt="Telegram Image 7">
+        <h3>Telegram Image 7</h3>
+    </div>
+    <div class="card" onclick="openModal('images/IMG_20251204_212420_901.jpg','Telegram Image 8')">
+        <img src="images/IMG_20251204_212420_901.jpg" alt="Telegram Image 8">
+        <h3>Telegram Image 8</h3>
+    </div>
+    <div class="card" onclick="openModal('images/IMG_20251204_212433_863.jpg','Telegram Image 9')">
+        <img src="images/IMG_20251204_212433_863.jpg" alt="Telegram Image 9">
+        <h3>Telegram Image 9</h3>
+    </div>
+    <div class="card" onclick="openModal('images/IMG_20251204_212452_315.jpg','Telegram Image 10')">
+        <img src="images/IMG_20251204_212452_315.jpg" alt="Telegram Image 10">
+        <h3>Telegram Image 10</h3>
+    </div>
+    <div class="card" onclick="openModal('images/IMG_20251204_212509_649.jpg','Telegram Image 11')">
+        <img src="images/IMG_20251204_212509_649.jpg" alt="Telegram Image 11">
+        <h3>Telegram Image 11</h3>
+    </div>
 </div>
 
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <span class="close" onclick="closeModal()">&times;</span>
-  <img class="modal-content" id="modalImage">
-  <div class="modal-caption" id="modalCaption"></div>
+<!-- Video -->
+<video controls>
+    <source src="images/video1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<!-- About Section -->
+<div class="about">
+    <h2>About ABDU Metal and Aluminum Work</h2>
+    <p>Hi👋i am ABDU aprofessional metal and aluminium worker . I specialize in custom metal fabrication, welding and aluminum works. </p>
+    <p> I can create advanced designs, structures, and high-quality products. My expertise includes modern techniques for 2026 model fabrication and creative metal solutions.</p>
+    <div class="phone">📞 Phone: 0911464168</div>
+</div>
+
+<!-- Modal for full view -->
+<div id="modal" class="modal" onclick="this.style.display='none'">
+    <img id="modal-img">
+    <h3 id="modal-title"></h3>
 </div>
 
 <script>
-    // Modal functionality
-    function openModal(src, caption) {
-        document.getElementById('myModal').style.display = "block";
-        document.getElementById('modalImage').src = 'images/' + src;
-        document.getElementById('modalCaption').innerText = caption;
-    }
-    function closeModal() {
-        document.getElementById('myModal').style.display = "none";
-    }
+function openModal(src, title){
+    document.getElementById('modal').style.display='flex';
+    document.getElementById('modal-img').src=src;
+    document.getElementById('modal-title').innerText=title;
+}
 
-    // Header shrink on scroll
-    window.onscroll = function() {
-        let header = document.getElementById('header');
-        if (window.scrollY > 50) {
-            header.classList.add('shrink');
-        } else {
-            header.classList.remove('shrink');
-        }
-    }
+// Sticky header small on scroll
+window.addEventListener('scroll',()=>{
+    const header=document.getElementById('header');
+    if(window.scrollY>50) header.classList.add('small');
+    else header.classList.remove('small');
+});
 </script>
 
 </body>
